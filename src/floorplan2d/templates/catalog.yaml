@@ -1,0 +1,20 @@
+# Catálogo genérico (cm). Sirve para cualquier tipo de local. Añade o edita lo que necesites.
+# Cada entrada: size [ancho, fondo] o diameter; group; clearance (zona libre) opcional.
+# El FRENTE del objeto es el lado +y local (mira al norte con rotate: 0).
+
+mesa-2:   { label: "Mesa 2p",  size: [60, 60],   group: mesas }
+mesa-4:   { label: "Mesa 4p",  size: [80, 80],   group: mesas }
+mesa-6:   { label: "Mesa 6p",  size: [160, 80],  group: mesas }
+mesa-redonda-90: { label: "Mesa Ø90", shape: circle, diameter: 90, group: mesas }
+# narrow_ok: las sillas van pegadas a mesas y muros a propósito: no avisar de "paso estrecho"
+silla:    { label: Silla,     size: [45, 45],    group: sillas, narrow_ok: true }
+taburete: { label: Taburete,  shape: circle, diameter: 35, group: sillas, narrow_ok: true }
+sofa-2:   { label: "Sofá 2p",  size: [160, 90],   group: sofas,  clearance: { front: 60 } }
+estanteria: { label: Estantería, size: [100, 40], group: almacenaje, clearance: { front: 80 } }
+armario:  { label: Armario,   size: [120, 55],   group: almacenaje, clearance: { front: 80 } }
+escritorio: { label: Escritorio, size: [140, 70], group: oficina, clearance: { front: 90 } }
+mostrador: { label: Mostrador, size: [200, 60],  group: mostradores, clearance: { front: 90 } }
+mesa-trabajo: { label: "Mesa trabajo", size: [180, 70], group: trabajo, clearance: { all: 90 } }
+fregadero: { label: Fregadero, size: [120, 60],  group: servicios, clearance: { front: 90 } }
+frigorifico: { label: Frigorífico, size: [70, 70], group: servicios, clearance: { front: 90 } }
+maquina:  { label: Máquina,   size: [60, 60],    group: equipos }

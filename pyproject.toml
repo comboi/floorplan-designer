@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "floorplan-2d"
+version = "0.1.0"
+description = "Planos 2D en planta genéricos desde YAML: validación (solapes, holguras, puertas) y exportación a SVG/PNG/DXF, con skill para Claude Code."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "ezdxf>=1.1",
+  "pyyaml>=6.0",
+  "shapely>=2.0",
+]
+
+[project.optional-dependencies]
+png = ["resvg-py>=0.1"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+floorplan = "floorplan2d.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/floorplan2d"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

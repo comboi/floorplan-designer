@@ -1,0 +1,25 @@
+# Plano de ejemplo. Edita y regenera con: floorplan build plan.yaml
+name: Sala de ejemplo
+units: cm                 # mm | cm | m
+
+room:
+  width: 600              # rectángulo; alternativa: polygon: [[0,0],[600,0],[600,400],[300,500],[0,400]]
+  depth: 400
+  wall_thickness: 20
+  # Bordes (rectángulo): 0 = sur, 1 = este, 2 = norte, 3 = oeste
+
+catalog: catalog.yaml     # opcional: piezas con medidas reutilizables
+
+openings:
+  - { id: puerta, type: door,   wall: 0, offset: 40,  width: 90, swing: in, hinge: start }
+  - { id: ventana, type: window, wall: 2, offset: 150, width: 200 }
+
+rules:
+  min_gap: 80             # paso mínimo entre objetos y muros (aviso NARROW)
+  gaps:
+    - { a: group:sillas, b: mesa, max: 60 }  # cada silla a ≤ 60 cm de la mesa. Selectores: id, id:x, group:x
+
+items:
+  - { use: mesa-4, id: mesa, at: [150, 200] }
+  - { use: silla, id: silla, at: [150, 135], repeat: { count: 2, step: [0, 130] } }   # 2 sillas, una a cada lado de la mesa
+  - { id: armario, label: Armario, size: [120, 50], wall: { edge: 2, offset: 20 }, clearance: { front: 80 }, group: almacenaje }   # en el muro norte, junto a la esquina
