@@ -1,0 +1,19 @@
+README.md
+  s_d39c5713002c6b::t_cb14868e29a42f 7-14,17-27,29-42,44-46,49-56
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "11ff9b5202ffcd0d530e2c25fb96898398817074",
+  "prompts": {},
+  "sessions": {
+    "s_d39c5713002c6b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "a83644d5-9922-4424-92ef-df2d4a16fe59",
+        "model": "unknown"
+      },
+      "human_author": "comboi <75421312+comboi@users.noreply.github.com>"
+    }
+  }
+}
