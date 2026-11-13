@@ -4,19 +4,56 @@ Planos 2D en planta **genéricos** a partir de un archivo YAML. Sin reglas de ni
 
 ## Instalar
 
+### Requisitos
+
+- Python 3.10 o superior
+- [uv](https://docs.astral.sh/uv/) (recomendado): `curl -LsSf https://astral.sh/uv/install.sh | sh` o `brew install uv`
+- Acceso a `github.com` y a PyPI (si tu red usa un registro corporativo, usa el público para esta instalación)
+
+### Opción recomendada: comando global con uv
+
 ```bash
-# desde GitHub, con uv (recomendado): queda como comando global `floorplan`
 uv tool install "floorplan-2d[png] @ git+https://github.com/comboi/floorplan-designer"
-# (sin el extra [png] no se exporta PNG, solo SVG y DXF)
-
-# o desde una copia local
-uv tool install "/ruta/a/floorplan-designer[png]"
-
-# o en un entorno virtual
-pip install "/ruta/a/floorplan-designer[png]"
 ```
 
-Actualizar: repite el `uv tool install` con `--force --reinstall`.
+Queda disponible el comando `floorplan` en cualquier carpeta. El extra `[png]` añade `resvg-py` para exportar PNG; sin él solo se generan SVG y DXF.
+
+Si `floorplan` no se encuentra, añade el directorio de binarios de uv al PATH:
+
+```bash
+uv tool update-shell     # y abre una terminal nueva
+```
+
+### Otras opciones
+
+```bash
+# sin instalar, ejecución puntual
+uvx --from "floorplan-2d[png] @ git+https://github.com/comboi/floorplan-designer" floorplan --version
+
+# con pip en un entorno virtual
+pip install "floorplan-2d[png] @ git+https://github.com/comboi/floorplan-designer"
+
+# desde una copia local (para desarrollar)
+git clone https://github.com/comboi/floorplan-designer.git
+cd floorplan-designer
+uv tool install ".[png]"          # o: uv pip install -e ".[dev,png]"
+```
+
+### Comprobar la instalación
+
+```bash
+floorplan --version               # floorplan-2d 0.1.0
+floorplan new /tmp/demo/plan.yaml && floorplan build /tmp/demo/plan.yaml -f png
+```
+
+### Actualizar y desinstalar
+
+```bash
+uv tool install --force --reinstall "floorplan-2d[png] @ git+https://github.com/comboi/floorplan-designer"
+floorplan install-skill --force   # en cada workspace, para refrescar la copia de la skill
+
+uv tool uninstall floorplan-2d
+```
 
 ## Usar en un workspace
 
